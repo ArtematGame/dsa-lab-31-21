@@ -12,7 +12,7 @@ def get_number():
         return jsonify({"error": "param is required"}), 400
     
     param = int(param)
-    random_num = random.randint(1, 100)
+    random_num = random.randint(1, 10)
     result = random_num * param
     
     return jsonify({
@@ -29,7 +29,7 @@ def post_number():
     if jsonParam is None:
         return jsonify({"error": "jsonParam is required"}), 400
     
-    random_num = random.randint(1, 100)
+    random_num = random.randint(1, 10)
     result = random_num * jsonParam
     
     return jsonify({
@@ -41,7 +41,7 @@ def post_number():
 # DELETE эндпоинт
 @app.route('/number/', methods=['DELETE'])
 def delete_number():
-    random_num = random.randint(1, 100)
+    random_num = random.randint(1, 10)
     
     return jsonify({
         "random_number": random_num,
