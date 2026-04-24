@@ -1,0 +1,12 @@
+# Позитивные
+2,2,2 -> equilateral
+3,3,5 -> isosceles
+3,4,5 -> nonequilateral
+1.5,2.0,2.5 -> nonequilateral
+
+# Негативные
+0,1,1 -> IncorrectTriangleSides
+-1,2,3 -> IncorrectTriangleSides
+1,1,3 -> IncorrectTriangleSides
+1,2,a -> IncorrectTriangleSides
+10,2,3 -> IncorrectTriangleSides
