@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Операции</title>
+</head>
+<body>
+
+<h1>Мои операции</h1>
+
+<p>
+    Пользователь: <b>{{ session.get("login") }}</b>
+</p>
+
+<form method="get" action="/operations">
+    <p>Выберите валюту</p>
+
+    <select name="currency">
+        <option value="RUB" {% if currency == "RUB" %}selected{% endif %}>RUB</option>
+        <option value="USD" {% if currency == "USD" %}selected{% endif %}>USD</option>
+        <option value="EUR" {% if currency == "EUR" %}selected{% endif %}>EUR</option>
+    </select>
+
+    <button type="submit">Показать</button>
+</form>
+
+<p>
+    Текущая валюта: <b>{{ currency }}</b>
+</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Дата</th>
+        <th>Сумма</th>
+        <th>Тип операции</th>
+        <th>Способ оплаты</th>
+    </tr>
+
+    {% for operation in operations %}
+    <tr>
+        <td>{{ operation.id }}</td>
+        <td>{{ operation.date }}</td>
+        <td>{{ operation.sum }} {{ currency }}</td>
+
+        <td>
+            {% if operation.type_operation == "income" %}
+                Доход
+            {% else %}
+                Расход
+            {% endif %}
+        </td>
+
+        <td>
+            {% if operation.type_operation == "expense" %}
+                {{ operation.payment_method }}
+            {% else %}
+                —
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if operations|length == 0 %}
+    <p>Операций пока нет.</p>
+{% endif %}
+
+<br>
+
+<a href="/add_operation">Добавить операцию</a>
+<br>
+<a href="/">На главную</a>
+<br>
+<a href="/logout">Выйти</a>
+
+</body>
+</html>

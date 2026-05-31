@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление операции</title>
+</head>
+<body>
+
+<h1>Добавление операции</h1>
+
+<p>
+    Пользователь: <b>{{ session.get("login") }}</b>
+</p>
+
+{% if message %}
+    <p><b>{{ message }}</b></p>
+{% endif %}
+
+<form method="post" action="/add_operation">
+
+    <p>Тип операции</p>
+    <select name="type_operation">
+        <option value="">Не выбран</option>
+        <option value="income">Доход</option>
+        <option value="expense">Расход</option>
+    </select>
+
+    <p>Сумма в рублях</p>
+    <input type="number" step="0.01" name="operation_sum">
+
+    <p>Дата операции</p>
+    <input type="date" name="operation_date">
+
+    <p>Способ оплаты</p>
+    <select name="payment_method">
+        <option value="">Не выбран</option>
+        <option value="НАЛИЧНЫЕ">Наличные</option>
+        <option value="КАРТА">Карта</option>
+    </select>
+
+    <p>
+        Если выбран доход, способ оплаты можно не выбирать.
+        Если выбран расход, нужно выбрать наличные или карту.
+    </p>
+
+    <button type="submit">Добавить операцию</button>
+
+</form>
+
+<br>
+
+<a href="/operations">Посмотреть операции</a>
+<br>
+<a href="/">На главную</a>
+<br>
+<a href="/logout">Выйти</a>
+
+</body>
+</html>

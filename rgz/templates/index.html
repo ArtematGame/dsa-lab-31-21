@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Учет финансов</title>
+</head>
+<body>
+
+<h1>WEB-приложение для учета финансов</h1>
+
+{% if message %}
+    <p><b>{{ message }}</b></p>
+{% endif %}
+
+<hr>
+
+{% if session.get("user_id") %}
+
+    <p>
+        Вы вошли как: <b>{{ session.get("login") }}</b>
+    </p>
+
+    <p>
+        <a href="/operations">Перейти к операциям</a>
+    </p>
+
+    <p>
+        <a href="/add_operation">Добавить операцию</a>
+    </p>
+
+    <p>
+        <a href="/logout">Выйти</a>
+    </p>
+
+{% else %}
+
+    <p>
+        Для работы с приложением нужно войти или зарегистрироваться.
+    </p>
+
+    <p>
+        <a href="/login">Войти</a>
+    </p>
+
+    <p>
+        <a href="/register">Зарегистрироваться</a>
+    </p>
+
+{% endif %}
+
+</body>
+</html>
